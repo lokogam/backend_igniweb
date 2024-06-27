@@ -2,7 +2,7 @@
 
 
 php artisan make:model Reservation --all --api --requests --test
-php artisan make:model Category -mcr --api 
+php artisan make:model Category -mcr --api
 
 
 php artisan test --filter '/(ReservationControllerTest::can_get_all_reservations|ReservationControllerTest::can_create_reservation|ReservationControllerTest::can_show_reservation|ReservationControllerTest::can_update_reservation|ReservationControllerTest::can_delete_reservation)/'
@@ -12,3 +12,42 @@ php artisan test --filter ReservationControllerTest::can_create_reservation
 php artisan test --filter ReservationControllerTest::can_show_reservation
 php artisan test --filter ReservationControllerTest::can_update_reservation
 php artisan test --filter ReservationControllerTest::can_delete_reservation
+
+
+
+link del video
+
+https://drive.google.com/file/d/1lMVF-DeQywCdxLQ9H6_2B6NvNnfYY5h9/view?usp=sharing
+
+
+bankend
+requerimientos
+composer
+docker
+
+copiar el repositorio
+cd backend_igniweb
+coposer install
+./vendor/bin/sail up -d
+docker exec -it  backend_igniweb sh
+composer update
+php artisan migrate:fresh --seed
+localhos:80
+
+
+
+https://github.com/lokogam/backend_igniweb.git
+
+frontend
+docker
+
+istalacion
+ copia el repocitorio
+ cd frontend_igniweb
+ docker-compose up -d
+ docker exec -it frontend_igniweb sh
+ npm install
+ npm run dev
+
+https://github.com/lokogam/frontend_igniweb.git
+
