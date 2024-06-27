@@ -14,12 +14,17 @@ class BookController extends Controller
      */
     public function index()
     {
+        $category = request('category');
         return Book::with([
             'reservations',
             'category' => function ($query) {
                 $query->select('id', 'name');
             },
-        ])->get();
+        ])
+            ->when($category, function ($query) use ($category) {
+                $query->where('category_id', $category);
+            })
+            ->get();
     }
 
     /**
