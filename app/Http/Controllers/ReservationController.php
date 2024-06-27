@@ -15,7 +15,32 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return Reservation::all();
+        // $books = Book::with(['reservations', 'category'])
+        //     ->whereHas('reservations', function ($query) {
+        //         $query->where('status', 'Active')
+        //             ->where('user_id', auth()->user()->id);
+        //     })
+        //     ->get();
+
+        $filteredReservations = Reservation::where('status', 'Active')
+            ->where('user_id', auth()->user()->id)
+            ->pluck('book_id');
+
+        $books = Book::with([
+            'reservations',
+            'category' => function ($query) {
+                $query->select('id', 'name');
+            },
+        ])
+            ->whereIn('id', $filteredReservations)
+            ->get();
+
+        return $books;
+
+        // return Reservation::with('user', 'book')
+        //     ->where('status', 'Active')
+        //     ->where('user_id', auth()->user()->id)
+        //     ->get();
     }
 
     /**
