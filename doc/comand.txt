@@ -1,0 +1,14 @@
+./vendor/bin/sail up -d
+
+
+php artisan make:model Reservation --all --api --requests --test
+php artisan make:model Category -mcr --api 
+
+
+php artisan test --filter '/(ReservationControllerTest::can_get_all_reservations|ReservationControllerTest::can_create_reservation|ReservationControllerTest::can_show_reservation|ReservationControllerTest::can_update_reservation|ReservationControllerTest::can_delete_reservation)/'
+
+php artisan test --filter ReservationControllerTest::can_get_all_reservations
+php artisan test --filter ReservationControllerTest::can_create_reservation
+php artisan test --filter ReservationControllerTest::can_show_reservation
+php artisan test --filter ReservationControllerTest::can_update_reservation
+php artisan test --filter ReservationControllerTest::can_delete_reservation
