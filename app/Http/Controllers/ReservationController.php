@@ -15,12 +15,6 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        // $books = Book::with(['reservations', 'category'])
-        //     ->whereHas('reservations', function ($query) {
-        //         $query->where('status', 'Active')
-        //             ->where('user_id', auth()->user()->id);
-        //     })
-        //     ->get();
 
         $filteredReservations = Reservation::where('status', 'Active')
             ->where('user_id', auth()->user()->id)
@@ -36,11 +30,6 @@ class ReservationController extends Controller
             ->get();
 
         return $books;
-
-        // return Reservation::with('user', 'book')
-        //     ->where('status', 'Active')
-        //     ->where('user_id', auth()->user()->id)
-        //     ->get();
     }
 
     /**

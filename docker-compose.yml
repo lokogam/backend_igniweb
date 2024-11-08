@@ -1,5 +1,5 @@
 services:
-    laravel.test:
+    backend_igniweb:
         build:
             context: ./vendor/laravel/sail/runtimes/8.3
             dockerfile: Dockerfile
@@ -19,6 +19,7 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
+        command: bash -c "composer update && php artisan migrate:fresh --seed && supervisord"
         networks:
             - sail
         depends_on:

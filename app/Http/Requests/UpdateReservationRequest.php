@@ -24,8 +24,8 @@ class UpdateReservationRequest extends FormRequest
         return [
             'user_id' => 'sometimes|required|exists:users,id',
             'book_id' => 'sometimes|required|exists:books,id',
-            'reservation_days' => 'sometimes|required',
-            'status' => 'sometimes|required|string',
+            'status' => 'required|in:Active,Not Active', // Solo se puede cambiar el estado a "Active" o "Not Active"
+            'reservation_days' => 'nullable|integer|min:1|max:30', // Solo permitir modificar los días de reserva        
         ];
     }
 }
